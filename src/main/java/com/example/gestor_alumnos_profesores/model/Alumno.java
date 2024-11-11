@@ -1,36 +1,34 @@
 package com.example.gestor_alumnos_profesores.model;
 
-import jakarta.validation.constraints.DecimalMax;
-import jakarta.validation.constraints.DecimalMin;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Pattern;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 
 public class Alumno {
-     private Long id;
+    @NotNull(message = "El ID es requerido")
+    @NotBlank(message = "El ID es requerido")
+    private Integer id;
 
-    @NotBlank(message = "Nombres is required")
+    @NotNull(message = "El ID es requerido")
+    @NotBlank(message = "El nombre es requerido")
     private String nombres;
 
-    @NotBlank(message = "Apellidos is required")
+    @NotNull(message = "El apellido es requerido")
+    @NotBlank(message = "El apellido es requerido")
     private String apellidos;
 
-    @NotNull(message = "Matricula is required")
-    @Pattern(regexp = "^[A-Z0-9]+$", message = "Matricula must contain only uppercase letters and digits")
+    @NotNull(message = "La matricula es necesaria")
+    @Pattern(regexp = "^[A-Za-z][0-9]+$", message = "La matrícula debe comenzar con una letra")
     private String matricula;
 
-    @NotNull(message = "Promedio is required")
-    @DecimalMin(value = "0.0", inclusive = true, message = "Promedio must be between 0 and 10")
-    @DecimalMax(value = "10.0", inclusive = true, message = "Promedio must be between 0 and 10")
+    @NotNull(message = "El promedio es requerido")
+    @Positive(message = "El promedio debe ser un número positivo")
     private Double promedio;
 
     // Getters y setters
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

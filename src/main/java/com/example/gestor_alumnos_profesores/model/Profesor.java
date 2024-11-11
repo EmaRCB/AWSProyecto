@@ -3,21 +3,27 @@ package com.example.gestor_alumnos_profesores.model;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 
 public class Profesor {
+    @NotNull(message = "El ID es requerido")
+    @NotBlank(message = "El ID es requerido")
     private Long id;
 
-    @NotBlank(message = "Número de empleado is required")
+    @NotNull(message = "Número de empleado is requerido")
+    @NotBlank(message = "Número de empleado is requerido")
     private String numeroEmpleado;
 
-    @NotBlank(message = "Nombres is required")
+    @NotNull(message = "Nombres es requerido")
+    @NotBlank(message = "Nombres es requerido")
     private String nombres;
 
-    @NotBlank(message = "Apellidos is required")
+    @NotNull(message = "Apellidos es requerido")
+    @NotBlank(message = "Apellidos es requerido")
     private String apellidos;
 
-    @NotNull(message = "Horas de clase is required")
-    @Min(value = 1, message = "Horas de clase should be at least 1")
+    @NotNull(message = "Horas de clase es requerido")
+    @Positive(message = "El número de empleado debe ser un número positivo")
     private Integer horasClase;
 
     // Getters y setters

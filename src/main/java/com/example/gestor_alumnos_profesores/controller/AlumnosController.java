@@ -1,16 +1,24 @@
 package com.example.gestor_alumnos_profesores.controller;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
-import com.example.gestor_alumnos_profesores.model.Alumno;
-
-import jakarta.validation.Valid;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.example.gestor_alumnos_profesores.model.Alumno;
+
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/alumnos")
@@ -25,7 +33,7 @@ public class AlumnosController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Alumno> getAlumnoById(@PathVariable Long id) {
+    public ResponseEntity<Alumno> getAlumnoById(@PathVariable Integer id) {
         Optional<Alumno> alumno = alumnos.stream().filter(a -> a.getId().equals(id)).findFirst();
         return alumno.map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).build());
@@ -41,7 +49,7 @@ public class AlumnosController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Alumno> updateAlumno(@PathVariable Long id, @Valid @RequestBody Alumno updatedAlumno) {
+    public ResponseEntity<Alumno> updateAlumno(@PathVariable Integer id, @Valid @RequestBody Alumno updatedAlumno) {
         Optional<Alumno> existingAlumno = alumnos.stream().filter(a -> a.getId().equals(id)).findFirst();
         if (existingAlumno.isPresent()) {
             Alumno alumno = existingAlumno.get();
@@ -56,13 +64,14 @@ public class AlumnosController {
     }
 
 
+
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteAlumno(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteAlumno(@PathVariable Integer id) {
         boolean removed = alumnos.removeIf(alumno -> alumno.getId().equals(id));
         return removed ? ResponseEntity.ok().build() : ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     }
 
-    private Long generateId() {
-        return alumnos.size() + 1L; // Simple ID generation, replace with better logic if needed
+    private Integer generateId() {
+        return alumnos.size() + 1; // Simple ID generation, replace with better logic if needed
     }
 }
