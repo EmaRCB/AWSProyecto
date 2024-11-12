@@ -16,11 +16,11 @@ public class Alumno {
     private String apellidos;
 
     @NotNull(message = "La matricula es necesaria")
-    @Pattern(regexp = "^[A-Za-z][0-9]+$", message = "La matrícula debe comenzar con una letra")
+    @Pattern(regexp = "^[A-Za-z][0-9]*$", message = "La matrícula debe comenzar con una letra")
     private String matricula;
 
     @NotNull(message = "El promedio es requerido")
-    @Positive(message = "El promedio debe ser un número positivo")
+    @PositiveOrZero(message = "El promedio debe ser un número positivo")
     private Double promedio;
 
     // Getters y setters

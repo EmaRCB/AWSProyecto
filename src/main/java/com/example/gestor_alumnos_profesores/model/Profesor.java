@@ -4,6 +4,7 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.PositiveOrZero;
 
 public class Profesor {
     @NotNull(message = "El ID es requerido")
@@ -23,7 +24,7 @@ public class Profesor {
     private String apellidos;
 
     @NotNull(message = "Horas de clase es requerido")
-    @Positive(message = "El número de empleado debe ser un número positivo")
+    @PositiveOrZero(message = "El número de empleado debe ser un número positivo")
     private Integer horasClase;
 
     // Getters y setters

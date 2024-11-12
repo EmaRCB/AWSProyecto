@@ -51,12 +51,17 @@ public class AlumnosController {
     @PutMapping("/{id}")
     public ResponseEntity<Alumno> updateAlumno(@PathVariable Integer id, @Valid @RequestBody Alumno updatedAlumno) {
         Optional<Alumno> existingAlumno = alumnos.stream().filter(a -> a.getId().equals(id)).findFirst();
+        
         if (existingAlumno.isPresent()) {
             Alumno alumno = existingAlumno.get();
             alumno.setNombres(updatedAlumno.getNombres());
             alumno.setApellidos(updatedAlumno.getApellidos());
             alumno.setMatricula(updatedAlumno.getMatricula());
             alumno.setPromedio(updatedAlumno.getPromedio());
+            
+            System.out.println("Matricula actualizado: " + updatedAlumno.getMatricula());
+            System.out.println("Id actualizado: " + updatedAlumno.getId());
+
             return new ResponseEntity<>(alumno, HttpStatus.OK);
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();

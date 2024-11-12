@@ -53,6 +53,10 @@ public class ProfesorController {
             profesor.setApellidos(updatedProfesor.getApellidos());
             profesor.setNumeroEmpleado(updatedProfesor.getNumeroEmpleado());
             profesor.setHorasClase(updatedProfesor.getHorasClase());
+
+            System.out.println("NumEmpleado actualizado: " + updatedProfesor.getNumeroEmpleado());
+            System.out.println("Horas actualizado: " + updatedProfesor.getHorasClase());
+
             return ResponseEntity.ok(profesor);
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
