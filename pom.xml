@@ -14,7 +14,7 @@
     <name>gestor-alumnos-profesores</name>
     <description>Demo project for Spring Boot</description>
     <properties>
-        <java.version>20</java.version> 
+        <java.version>17</java.version> 
         <aws.java.sdk.version>2.29.24</aws.java.sdk.version>
     </properties>
     <dependencyManagement>
