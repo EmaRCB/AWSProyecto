@@ -1,13 +1,14 @@
 package com.example.gestor_alumnos_profesores.model;
 
+import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 
+@Entity
 public class Alumno {
-    @NotNull(message = "El ID es requerido")
-    @NotBlank(message = "El ID es requerido")
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @NotNull(message = "El ID es requerido")
     @NotBlank(message = "El nombre es requerido")
     private String nombres;
 
@@ -22,6 +23,8 @@ public class Alumno {
     @NotNull(message = "El promedio es requerido")
     @PositiveOrZero(message = "El promedio debe ser un número positivo")
     private Double promedio;
+
+    private String fotoPerfilUrl;
 
     // Getters y setters
     public Integer getId() {
@@ -63,4 +66,12 @@ public class Alumno {
     public void setPromedio(Double promedio) {
         this.promedio = promedio;
     }
+
+    public String getFotoPerfilUrl() {
+        return fotoPerfilUrl;
+     }
+  
+     public void setFotoPerfilUrl(String fotoPerfilUrl) {
+        this.fotoPerfilUrl = fotoPerfilUrl;
+     }
 }
